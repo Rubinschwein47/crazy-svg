@@ -2,16 +2,25 @@
   "name": "@crazy-svg/core",
   "version": "0.0.1-alpha",
   "description": "a package for realtime svg creation from simple lines to complex shapes",
-  "main": "src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "repository": {
-    "directory": ""
+    "type": "git",
+    "url": "https://github.com/Rubinschwein47/crazy-svg.git"
   },
+  "keywords": [
+    "svg",
+    "procedural"
+  ],
+  "author": "Rubinschwein47",
+  "license": "MIT",
   "scripts": {
-    "build": "npm compile"
+    "build": "tsup"
   },
-  "dependencies": {},
   "devDependencies": {
-    "typescript": "^5.5.3"
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   },
   "private": true
 }

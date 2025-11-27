@@ -1,1 +1,4 @@
-console.log('Happy developing ✨')
+
+
+export * from './functions';
+export * from './types';

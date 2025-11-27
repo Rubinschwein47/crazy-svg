@@ -1,0 +1,17 @@
+{
+  "name": "@crazy-svg/core",
+  "version": "0.0.1-alpha",
+  "description": "a package for realtime svg creation from simple lines to complex shapes",
+  "main": "src/index.ts",
+  "repository": {
+    "directory": ""
+  },
+  "scripts": {
+    "build": "npm compile"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}

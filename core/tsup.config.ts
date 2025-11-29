@@ -7,4 +7,9 @@ export default defineConfig({
     shims: true,
     skipNodeModulesBundle: true,
     clean: true,
+    esbuildOptions(options) {
+        // preserve all comments
+        options.keepNames = true;
+        options.legalComments = 'inline';
+    },
 })

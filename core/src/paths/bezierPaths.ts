@@ -8,8 +8,8 @@ import {Point, SimplePath} from "./path";
 @param number precision the amount of steps being taken higher = smoother & more expensive
  */
 export function QuadraticBezierPath(a: Point, b: Point, c: Point, precision: number = 8): SimplePath {
-    let step = 1 / (precision - 1)
-    return {points: Array(precision).map((v, index) => QuadraticBezierPathPoint(step * index, a, b, c))}
+    let step = 1 / (precision - 1);
+    return {points: Array(precision).map((v, index) => QuadraticBezierPathPoint(step * index, a, b, c))};
 }
 
 /*
@@ -57,6 +57,33 @@ export function CubicBezierPathPoint(t: number, a: Point, b: Point, c: Point, d:
 @param number precision the amount of steps being taken higher = smoother & more expensive
  */
 export function CubicBezierPath(a: Point, b: Point, c: Point, d: Point, precision: number = 8): SimplePath {
-    let step = 1 / (precision - 1)
-    return {points: new Array(precision).fill({x:0,y:0}).map((v, index) => CubicBezierPathPoint(step * index, a, b, c, d))}
+    let step = 1 / (precision - 1);
+    return {
+        points: new Array(precision).fill({x: 0, y: 0})
+            .map((v, index) =>
+                CubicBezierPathPoint(step * index, a, b, c, d))
+    };
+}
+
+export function EasePath(
+    cordX: number, cordY: number,
+    cordXTarget: number, cordYTarget: number,
+    direction: "vertical" | "horizontal", strength: number = 1, precision: number = 8): SimplePath {
+    let base: Point = {x: cordX < cordXTarget? 0:1, y: cordY < cordYTarget? 0:1};
+    let target: Point = {x: 1-base.x, y: 1-base.y};
+    if (direction === "horizontal") {
+        return CubicBezierPath(
+            base,
+            {x: target.x * strength + base.x*(1-strength),y:base.y},
+            {x: base.x * strength + target.x*(1-strength),y:target.y},
+            target,
+            precision);
+    }else {
+        return CubicBezierPath(
+            base,
+            {x: base.x,y:target.y * strength + base.y*(1-strength)},
+            {x: base.x,y:base.y * strength + target.y*(1-strength)},
+            target,
+            precision);
+    }
 }

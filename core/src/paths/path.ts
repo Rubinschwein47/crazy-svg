@@ -7,8 +7,8 @@ export type Point = {
     y: number;
 };
 
-export type SimplePath = {
+export class SimplePath  {
     wraparound?: boolean;
-    points: Point[]
+    points: Point[] = [];
 }
 
